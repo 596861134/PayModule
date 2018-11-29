@@ -1,6 +1,7 @@
 package com.paymodule;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Base64;
 import android.util.Log;
 
@@ -83,5 +84,49 @@ public class RNSDK {
             });
         }
     }
+
+    public void onPayResult(Intent data){
+        Log.e("mtsdk", "payResultIntent:" + data);
+        if (data == null) {
+            return;
+        }
+        // 支付部分
+        String flag = data.getExtras().getString("flag");
+        if (flag != null && flag.equals("WEIXIN_PAY_RESULT")) {
+            //微信统计
+
+        } else {
+            //银联统计
+        }
+        String str = data.getExtras().getString("pay_result");
+        Log.e("mtsdk", "payResult:" + str);
+        if (str.equalsIgnoreCase("success")) {
+            Log.e("mtsdk", "payResultsuccess:" + str);
+            RNSDK.getInstance().weiyinPay("9000");
+        } else if (str.equalsIgnoreCase("fail")) {
+            Log.e("mtsdk", "payResultfail:" + str);
+            RNSDK.getInstance().weiyinPay("8000");
+        } else if (str.equalsIgnoreCase("cancel")) {
+            Log.e("mtsdk", "payResultcancel:" + str);
+            RNSDK.getInstance().weiyinPay("6000");
+        }
+    }
+
+    /**
+     * 回调RN微信支付结果
+     *
+     * @param info
+     */
+    public void weiyinPay(String info) {
+        Log.e("weixinPayinfo", info);
+        if (rnContext != null) {
+            Log.e("info", info);
+            if (rnContext != null) {
+                sendRN("PAY_RESULT", info);
+            }
+        }
+    }
+
+
 
 }

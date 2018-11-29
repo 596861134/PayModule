@@ -1,6 +1,9 @@
 package com.paymodule;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -11,10 +14,11 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class MainApplication extends Application implements ReactApplication {
 
   private Activity app_activity = null;
-  private static volatile RNSDK mInstance;
+  private static volatile MainApplication mInstance;
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -99,7 +103,7 @@ public class MainApplication extends Application implements ReactApplication {
    */
   public static MainApplication getInstance() {
     if (null == mInstance) {
-      synchronized (RNSDK.class) {
+      synchronized (MainApplication.class) {
         if (null == mInstance) {
           mInstance = new MainApplication();
         }
