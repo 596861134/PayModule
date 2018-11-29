@@ -9,6 +9,8 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "WXApi.h"
+#import "WechatManager.h"
 
 @implementation AppDelegate
 
@@ -29,7 +31,21 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  // 向微信注册id
+  [WXApi registerApp:@"wxdc83676986cb8176"];
+  
+  
   return YES;
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(nonnull NSURL *)url{
+  return [WXApi handleOpenURL:url delegate:[WechatManager shared]];
+  
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  return [WXApi handleOpenURL:url delegate:[WechatManager shared]];
 }
 
 @end
