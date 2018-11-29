@@ -11,6 +11,7 @@ import com.paymodule.alipay.PayResult;
 import com.paymodule.alipay.PayResultCallBack;
 import com.paymodule.weixin.ConnectCallBack;
 import com.paymodule.weixin.WeixinPay;
+import com.paymodule.MainApplication;
 
 import java.io.UnsupportedEncodingException;
 
@@ -18,7 +19,6 @@ public class RNSDK {
 
     public static ReactContext rnContext;
     private static volatile RNSDK mInstance;
-    private Activity mActivity;
 
     public static RNSDK getInstance() {
         if (null == mInstance) {
@@ -31,17 +31,13 @@ public class RNSDK {
         return mInstance;
     }
 
-    public void init(Activity activity) {
-        Log.e("czf", "初始化");
-        mActivity = activity;
-    }
-
     public void sendRN(String event, String data) {
         rnContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(event, data);//原生调Rn
     }
 
     public void aliPay(String payTradeNo) {
+        Activity mActivity = MainApplication.getInstance().getCurrentActivity();
         if (mActivity != null) {
             byte[] value = Base64.decode(payTradeNo, Base64.DEFAULT);
             String payInfo = null;
@@ -69,6 +65,7 @@ public class RNSDK {
     }
 
     public void weixinPay(String payTradeNo, String payInfo) {
+        Activity mActivity = MainApplication.getInstance().getCurrentActivity();
         if (mActivity != null) {
             WeixinPay weixinPay = new WeixinPay(mActivity);
             weixinPay.weixinPay(payTradeNo, payInfo, new ConnectCallBack() {

@@ -27,7 +27,6 @@ public class MainActivity extends ReactActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        RNSDK.getInstance().init(this);
         requestPermission();
     }
 
