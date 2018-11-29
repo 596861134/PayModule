@@ -44,6 +44,7 @@ public class NativeInteraction extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void weixinPay(String payTradeNo,String payInfo){
+        Log.e("czf","被调用"+payInfo);
         RNSDK.getInstance().weixinPay(payTradeNo,payInfo);
     }
 

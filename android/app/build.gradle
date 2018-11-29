@@ -97,13 +97,30 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    signingConfigs {
+        config {
+            keyAlias 'xynet'
+            keyPassword 'qweasdzxc'
+            storeFile file('hxjh.keystore')
+            storePassword 'qweasdzxc'
+        }
+        pro {
+            keyAlias 'xynet'
+            keyPassword 'qweasdzxc'
+            storeFile file('hxjh.keystore')
+            storePassword 'qweasdzxc'
+        }
+    }
+
     defaultConfig {
 //        applicationId "com.paymodule"
-        applicationId "com.liangqianwan.vrtelescope"
+//        applicationId "com.liangqianwan.vrtelescope"
+        applicationId "com.xunyin.ProjectFantasy2"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.config
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -120,6 +137,10 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
     // applicationVariants are e.g. debug, release

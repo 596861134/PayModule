@@ -18,9 +18,12 @@ import java.util.Random;
 
 public class WeixinPay {
 
-    public static final String wxAppId = "wxdc83676986cb8176";
-    public static final String wxPayAppKey = "7bbe0b18bcfc5722c9f5d69817181d5c";
-    public static final String wxPayPartnerId = "1447554802";
+//    public static final String wxAppId = "wxdc83676986cb8176";
+//    public static final String wxPayAppKey = "7bbe0b18bcfc5722c9f5d69817181d5c";
+//    public static final String wxPayPartnerId = "1447554802";
+    public static final String wxAppId = "wx43f76f59e1d15376";
+    public static final String wxPayAppKey = "5bce617704bd287cc5947f2e8dbf67b3";
+    public static final String wxPayPartnerId = "1253469901";
 
     private IWXAPI api;
     private String PAY_RESPONSE = "{\"code\":$$$1,\"msg\":\"$$$2\",\"data\":{\"result\":\"success\"}}";
